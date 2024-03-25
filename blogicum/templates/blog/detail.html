@@ -2,24 +2,6 @@
 {% block title %}
   {{ post.location }}, {{ post.date }}
 {% endblock %}
-{% block main%}
-  <div class="container py-5">
-    <article>
-      <ul>
-        <li>
-          {{ post.location }}
-        </li>
-        <li>
-          {{ post.date }}
-        </li>
-        <li>
-          Категория: <a href="/category/{{ post.category }}/">{{ post.category}}</a>
-        </li>
-      </ul>
-      <p>
-        {{ post.text}}
-      </p>
-    </article>
-  </div>
+{% block main %}
+{% include "includes/article.html" with post=post truncate_text=False hide_read_more=False %}
 {% endblock %}
-{% include "includes/footer.html" %}
