@@ -3,5 +3,5 @@
   {{ post.location }}, {{ post.date }}
 {% endblock %}
 {% block main %}
-{% include "includes/article.html" with post=post truncate_text=False hide_read_more=False %}
+  {% include "includes/article.html" with truncate_text=False hide_read_more=False %}
 {% endblock %}

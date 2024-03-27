@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseNotFound
 
 
 posts = [
@@ -50,16 +51,18 @@ POSTS = {post['id']: post for post in posts}
 
 def index(request):
     template = 'blog/index.html'
-    context = {'posts': reversed(posts)}
+    sorted_posts = [POSTS[key] for key in sorted(POSTS.keys(), reverse=True)]
+    context = {'posts': sorted_posts}
     return render(request, template, context)
 
 
 def post_detail(request, post_id: int):
     template = 'blog/detail.html'
-    context = {}
     if post_id in POSTS:
         context = {'post': POSTS[post_id]}
-    return render(request, template, context)
+        return render(request, template, context)
+    else:
+        return HttpResponseNotFound(f'Поста под id({post_id}) не существует!')
 
 
 def category_posts(request, category_slug: str):

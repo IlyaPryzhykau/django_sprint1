@@ -16,7 +16,7 @@
     {% if truncate_text %}
       {{ post.text|truncatewords:10 }}
     {% else %}
-      {{ post.text }}
+      {{ post.text | linebreaksbr }}
     {% endif %}
   </p>
   {% if hide_read_more %}
