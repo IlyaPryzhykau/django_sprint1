@@ -61,8 +61,7 @@ def post_detail(request, post_id: int):
     if post_id in POSTS:
         context = {'post': POSTS[post_id]}
         return render(request, template, context)
-    else:
-        return HttpResponseNotFound(f'Поста под id({post_id}) не существует!')
+    return HttpResponseNotFound(f'Поста под id({post_id}) не существует!')
 
 
 def category_posts(request, category_slug: str):
